@@ -14,8 +14,8 @@ class Post extends Model{
 
     //protected $fillable = ['title', 'excerpt', 'body'];
 
-    public function scopeFilter($query){
-        if(request('search')){
+    public function scopeFilter($query, array $filters){
+        if(isset($filters['search'])){
             $query->where('title', 'like', '%' . request('search') . '%')
                   ->orwhere('body', 'like', '%' . request('search') . '%');
         }
